@@ -1,14 +1,11 @@
-
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
-
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.*;
 import java.io.IOException;
 
 public class TestMyTest4FileVisitor {
-	
 	static Map<String, Integer> variables = new HashMap<>();
 static public class VariableInfo {
 	private String name; 
@@ -16,7 +13,6 @@ static public class VariableInfo {
 	public VariableInfo(String name, int value) {
 	this.name = name;
 	this.value = value;
-	
     }
 	public void setValueVariableInfo(String name,int value){
 		this.name = name;
@@ -47,10 +43,7 @@ test4BaseVisitor<VariableInfo>
 	{
 		values.get(node);
 	}
-	
-	
 
-	
 	public VariableInfo visitMov(test4Parser.MovContext ctx) { 
 		
 		
@@ -64,18 +57,12 @@ test4BaseVisitor<VariableInfo>
 		}
 		
 	public VariableInfo visitAdd(test4Parser.AddContext ctx) { 
-		
-		
 		VariableInfo name =  visit(ctx.operand1());
 		VariableInfo value =  visit(ctx.operand2());
 		Integer value2 = variables.get(name.getNameVariableInfo());
 		variables.put(name.getNameVariableInfo(),value.getintValueVariableInfo()+value2);
 		VariableInfo info = new VariableInfo(name.getNameVariableInfo(),value.getintValueVariableInfo());
-	
-		
-
 		return info;
-		
 		}
 		
 	public VariableInfo visitXchg(test4Parser.XchgContext ctx) {
@@ -84,8 +71,7 @@ test4BaseVisitor<VariableInfo>
     String name1 = name1Info.getNameVariableInfo();
     String name2 = name2Info.getNameVariableInfo();
 
-    // Проверяем, существуют ли обе переменные в хеш-таблице.
-    // Если одной из переменных не существует, инициализируем её значением 0.
+    
     Integer value1 = variables.getOrDefault(name1, 0);
     Integer value2 = variables.getOrDefault(name2, 0);
 
@@ -93,8 +79,7 @@ test4BaseVisitor<VariableInfo>
     variables.put(name1, value2);
     variables.put(name2, value1);
 
-    // Возвращаем информацию о выполнении операции. В зависимости от вашей задачи,
-    // может потребоваться возвращать более осмысленный результат.
+    
     return new VariableInfo("", 0);
 }
 
@@ -158,7 +143,7 @@ public static void main(String[] args) throws IOException {
         // Создание и использование визитора для обхода дерева разбора
         MyTest4FileVisitor visitor = new MyTest4FileVisitor();
         visitor.visit(tree);
-		TestMyTest4FileVisitor.variables.forEach((key, value) -> System.out.println(key + " = " + value));
+	TestMyTest4FileVisitor.variables.forEach((key, value) -> System.out.println(key + " = " + value));
 
         // Вывод результатов
         
