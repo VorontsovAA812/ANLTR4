@@ -87,16 +87,12 @@ test4BaseVisitor<VariableInfo>
 		
 		
 	public VariableInfo visitSub(test4Parser.SubContext ctx) { 
-		
-		
 		VariableInfo name =  visit(ctx.operand1());
 		VariableInfo value =  visit(ctx.operand2());
 		Integer value2 = variables.get(name.getNameVariableInfo());
 		variables.put(name.getNameVariableInfo(),value2-value.getintValueVariableInfo());
 		VariableInfo info = new VariableInfo(name.getNameVariableInfo(),value.getintValueVariableInfo());
 	
-		
-
 		return info;
 		
 		}
@@ -125,8 +121,7 @@ test4BaseVisitor<VariableInfo>
         throw new RuntimeException("Operand2 не содержит ни INT, ни ID");
     }
 }
-
-	    
+	
 }
 public static void main(String[] args) throws IOException {
         // Использование System.in для чтения ввода из консоли
